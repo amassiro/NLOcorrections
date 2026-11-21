@@ -57,10 +57,18 @@ NLO QCD + NLO EW = LO + delta_EW + delta_QCD (additive, bin by bin). The mixed O
 (the multiplicative combination can be used to estimate its size).
 Not included: QCD-induced background O(alpha_s^2 alpha^4) and its corrections O(alpha_s^2 alpha^5), O(alpha_s^3 alpha^4).
 
-Results with R = 0.05 (MC stat. uncertainties only):
+Results (MC stat. uncertainties only), R = 0.4:
 
-    W+W+: LO = 5.174 fb, NLO QCD +10.9 +- 0.7%, NLO EW -11.5 +- 1.1%, QCD+EW (sum) -0.6 +- 1.2%, interference = 0.708 fb
-    W-W-: LO = 1.936 fb, NLO QCD +19.4 +- 0.5%, NLO EW  -7.7 +- 0.7%, QCD+EW (sum) +11.7 +- 0.9%, interference = 0.248 fb
+    W+W+: LO = 5.182 fb, NLO QCD +17.3 +- 0.6%, NLO EW -10.4 +- 0.6%, QCD+EW (sum)  +6.9 +- 0.9%, interference = 0.709 fb
+    W-W-: LO = 1.938 fb, NLO QCD +32.7 +- 1.0%, NLO EW  -9.7 +- 0.4%, QCD+EW (sum) +23.0 +- 1.1%, interference = 0.249 fb
+
+R = 0.05:
+
+    W+W+: LO = 5.174 fb, NLO QCD +10.9 +- 0.7%, NLO EW -11.5 +- 1.1%, QCD+EW (sum)  -0.6 +- 1.2%, interference = 0.708 fb
+    W-W-: LO = 1.936 fb, NLO QCD +24.1 +- 0.5%, NLO EW  -8.9 +- 0.7%, QCD+EW (sum) +15.2 +- 0.9%, interference = 0.248 fb
+
+NB: runs with different seeds combined with 1/sigma^2 weights. The real-emission weights are heavy-tailed:
+with a plain mean W+W+ (R = 0.4) gives NLO EW = -0.63 +- 0.06 fb and NLO QCD = +0.96 +- 0.04 fb (vs -0.54, +0.89 fb).
 
 
 Polarisation
