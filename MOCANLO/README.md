@@ -80,10 +80,44 @@ Polarisation
     interference = UU - (LL + TT + LT + TL)
     NLO: photon real emission with separate on-shell projections for production and for the decay of each W
 
-NB: for the QCD-EW interference photon real emission only the production projection is available
-(no decay dipoles), expected effect < 0.1% of sigma.
+NB: the QCD-EW interference photon real emission needs the decay projections too: in MoCaNLO 1.0.0 they are
+missing (see "MoCaNLO issues" below), the effect is NOT small (e.g. W+W+ uu_int real 2.4 +- 1.0 fb vs 0.014 fb off-shell).
 
 LO results, R(j,j) = 0.01 (fractions of UU):
 
     W+W+: UU = 5.140 fb (UU / off-shell = 0.992), LL 9.4%, TT 59.5%, LT+TL 31.2%, interference -0.1 +- 0.2%
     W-W-: UU = 1.925 fb (UU / off-shell = 0.994), LL 9.9%, TT 58.5%, LT+TL 30.5%, interference +1.1 +- 0.1%
+
+NLO EW results, R = 0.4 (DPA, delta_EW = (NLO EW - LO) / LO, LO = Born of the NLO EW runs, MC stat. on delta_EW <= 0.4%):
+
+    W+W+: LL 0.484 fb -7.7%, TT 3.057 fb -13.4%, LT+TL 1.606 fb -11.2%, UU 5.145 fb -12.3% (off-shell: 5.182 fb, -10.4%)
+    W-W-: LL 0.191 fb -6.6%, TT 1.124 fb -11.7%, LT+TL 0.588 fb  -9.4%, UU 1.927 fb -10.5% (off-shell: 1.938 fb,  -9.7%)
+    fractions of UU change by < 1% (absolute) from LO to NLO EW
+
+NB: K = NLO EW / LO differs between the states (LL vs the others incompatible bin by bin, chi2 p < 1e-8):
+a single K factor for all polarisations is not adequate.
+
+NLO QCD (polarised, DPA): NOT usable yet. The real QCD runs with a q q' pair that can come from a W
+(e.g. u g -> l+ v l+ v d d u~) are 20-30% below the off-shell ones, with rare events of weight ~ the full integral
+(1/sigma^2 weighted mean biased low, plain mean dominated by single events). Under study: the fudge-factor
+regularisation of the non-projected resonances looks inconsistent in the subtraction terms (mapped process
+u u -> l+ v l+ v d d gets a fudge factor on the (d, d) pair). keep_resonance_widths = 1 is not supported for the real runs.
+
+
+MoCaNLO issues
+====
+
+Found with the polarised NLO runs, MoCaNLO 1.0.0, patches in /home/amassiro/Claude/mocanlo/patches:
+
+    fudgefix: on_shell_projections.F90, osp_general_compute_fudge_factor: momenta of the wrong legs summed
+              (fudge_indices(k,1) instead of fudge_indices(i,k)), width-range check applied only to the last resonance
+    fix2:     subtraction.F90: for a QCD-EW interference (tree_qcd_order /= tree_qcd_order_2) the decay dipoles are
+              searched for a gluon (rpdg = 21) also for photon real emission -> no decay dipoles; patched to rpdg = 22
+              when the real process has an outgoing photon (fix2 includes fudgefix)
+
+Cards (W-W-): for the photon real emission partonic_process was set equal to the real process (photon included)
+-> no decay dipoles, the osp1/osp2 runs stop with "No dipole found" and the decay radiation is unsubtracted
+(W-W- delta_EW = +158%). Fixed in the card generation (makePolNLOCards.py -b -n): partonic_process = real process
+without the photon, decay projections also for the interference.
+
+NB: 130 runs stop by design ("No dipole found" for osp runs without decay dipoles, integrated dipoles without dipoles).
