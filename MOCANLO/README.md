@@ -99,9 +99,9 @@ a single K factor for all polarisations is not adequate.
 
 NLO QCD (polarised, DPA): NOT usable yet. The real QCD runs with a q q' pair that can come from a W
 (e.g. u g -> l+ v l+ v d d u~) are 20-30% below the off-shell ones, with rare events of weight ~ the full integral
-(1/sigma^2 weighted mean biased low, plain mean dominated by single events). Under study: the fudge-factor
-regularisation of the non-projected resonances looks inconsistent in the subtraction terms (mapped process
-u u -> l+ v l+ v d d gets a fudge factor on the (d, d) pair). keep_resonance_widths = 1 is not supported for the real runs.
+(1/sigma^2 weighted mean biased low, plain mean dominated by single events). Cause not found yet: the fudge-factor
+regularisation of the non-projected resonances (W -> q q') is applied consistently in the real and in the subtraction
+terms; keep_resonance_widths = 1 is not supported for the real runs.
 
 
 MoCaNLO issues
